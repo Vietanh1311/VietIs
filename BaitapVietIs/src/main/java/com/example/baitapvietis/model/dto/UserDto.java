@@ -14,7 +14,7 @@ import javax.persistence.Column;
 public class UserDto {
     private Long id;
     private String userName;
-    private RolesEnum position;
+    private String position;
     private String name;
     private String DateOfBirth;
 }

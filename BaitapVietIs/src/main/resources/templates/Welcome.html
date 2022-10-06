@@ -20,10 +20,25 @@
         <span th:text="${user.id}"></span>
       </div>
       <div class="form-group">
-        <label for="exampleInputPassword1">Name</label>
-        <span class="form-control" id="exampleInputPassword1" th:field="${user.name}"></span>
+        <label for="exampleInputEmail1">Name:</label>
+        <span th:text="${user.name}"></span>
       </div>
-
+      <div class="form-group">
+        <label for="exampleInputEmail1">User Name:</label>
+        <span th:text="${user.userName}"></span>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password:</label>
+        <span th:text="${user.password}"></span>
+      </div>
+      <div class="form-group">
+        <label for="example">Date of Birth:</label>
+        <span th:text="${user.DateOfBirth}"></span>
+      </div>
+      <div class="form-group">
+        <label for="example">Role :</label>
+        <span th:text="${user.position}"></span>
+      </div>
 
       <div class="form-group">
 
@@ -31,7 +46,11 @@
     </div>
 
   </div>
+  <form th:action="@{/Login}" method="get" >
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
 </div>
+
 </div>
 <script type="text/javascript">
   //Data Picker Initialization
