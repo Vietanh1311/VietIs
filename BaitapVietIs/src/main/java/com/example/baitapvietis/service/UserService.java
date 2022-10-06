@@ -5,6 +5,8 @@ import com.example.baitapvietis.model.entity.UserEntity;
 import com.example.baitapvietis.model.respone.Data;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
+
 @Service
 public interface UserService {
     Data getById(Long id);
@@ -13,7 +15,9 @@ public interface UserService {
 
     void add(UserEntity userDto);
 
-    Data update(UserDto userDto, Long id);
+    void getAll();
+
+    void update(Principal principal, UserEntity user);
 
     Data deleteById(Long id);
 }
