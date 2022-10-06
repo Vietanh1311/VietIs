@@ -182,7 +182,11 @@
 <!--            <td th:text="${listUser.userName}" />-->
             <td th:text="${listUser.position}" />
             <td th:text="${listUser.DateOfBirth}" />
+<<<<<<< HEAD
             <td><button class="button1" id="add">update</button>
+=======
+            <td><form th:action="@{/updateUser}" method="post" ><button class="button1" id="add">update</button></form>
+>>>>>>> origin/main
 
             <button class="button1">Delete</button></td>
 
@@ -193,6 +197,7 @@
 
 </div>
 
+<<<<<<< HEAD
 <div class="add1">
     <div class="table1">
 
@@ -210,6 +215,24 @@
         </div>
     </div>
 </div>
+=======
+<!--<div class="add1">-->
+<!--    <div class="table1">-->
+
+<!--        <h4 style="font-size:18px">Update User <a href="" style="color:red ; margin-left:140px;font-size:25px">x</a></h4>-->
+<!--        <hr>-->
+<!--        <div id="div">-->
+<!--            <form th:action="@{/updateUser}" th:object="${user}" method="post" class="form">-->
+<!--                <label>Name</label>-->
+<!--                <input type="text" minlength="2" maxlength="50" th:field="*{usser.name}">-->
+
+<!--                <input type="submit" value="Update" id="submit">-->
+
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+>>>>>>> origin/main
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script

@@ -23,6 +23,10 @@ public class UserDetail implements UserDetailsService {
             throw new UsernameNotFoundException(username);
         }
 //        return new CustomUserDetails(user);
+<<<<<<< HEAD
         return  user;
+=======
+        return user;
+>>>>>>> origin/main
     }
 }

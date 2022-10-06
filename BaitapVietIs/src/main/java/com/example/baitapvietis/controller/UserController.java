@@ -42,7 +42,10 @@ public class UserController {
     @GetMapping("/admin")
     public ModelAndView admin(Model model,Principal principal) {
         ModelAndView listUser = new ModelAndView("admin");
+<<<<<<< HEAD
         model.addAttribute("user", new UserEntity());
+=======
+>>>>>>> origin/main
         listUser.addObject("listUser", userRepository.findAll());
         return listUser;
     }
@@ -53,8 +56,12 @@ public class UserController {
         user.setName(userUpdate.getName());
         user.setPosition(userUpdate.getPosition());
         user.setDateOfBirth(userUpdate.getDateOfBirth());
+<<<<<<< HEAD
 
         userRepository.save(user);
         return "redirect:/admin";
+=======
+        return "UserUpdate";
+>>>>>>> origin/main
     }
 }

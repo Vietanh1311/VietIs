@@ -22,8 +22,13 @@ public class UserEntity implements UserDetails {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+<<<<<<< HEAD
     @Column(name = "username",nullable = true, unique = true)
     private String userName ;
+=======
+    @Column(name = "username",nullable = false, unique = true)
+    private String userName;
+>>>>>>> origin/main
     @Column(name = "position")
     private String position;
     @Column(name = "name")
@@ -35,7 +40,21 @@ public class UserEntity implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+<<<<<<< HEAD
         return Collections.singleton(new SimpleGrantedAuthority("user"));
+=======
+        return Collections.singleton(new SimpleGrantedAuthority(this.position));
+    }
+
+    @Override
+    public String getPassword() {
+        return this.password;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.userName;
+>>>>>>> origin/main
     }
 
 
@@ -58,6 +77,7 @@ public class UserEntity implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+<<<<<<< HEAD
     @Override
     public String getPassword() {
         return this.password;
@@ -69,4 +89,6 @@ public class UserEntity implements UserDetails {
     }
 
 
+=======
+>>>>>>> origin/main
 }
