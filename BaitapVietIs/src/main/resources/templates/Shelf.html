@@ -1,0 +1,309 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Shelf</title>
+
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+        crossorigin="anonymous" />
+  <link
+          rel="stylesheet"
+          type="text/css"
+          href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css"
+  />
+  <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+          crossorigin="anonymous"
+  />
+  <style>
+
+
+    img {
+      height: 200px;
+      width: 200px;
+      border: 1px solid #ddd;
+      border-radius: 50%;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      object-fit: cover;
+    }
+
+    .add1 {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 999999;
+      background-color: rgba(0, 0, 0, 0.75);
+      display: none;
+      justify-content: center;
+      align-items: center;
+
+    }
+    .add3 {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 999999;
+      background-color: rgba(0, 0, 0, 0.75);
+      display: none;
+      justify-content: center;
+      align-items: center;
+
+    }
+
+    .table1 {
+      justify-content: center;
+      margin: auto;
+      width: 30%;
+      height: 530px;
+      line-height: 1;
+
+
+      background-color: white;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      border-radius: 15px;
+      background-color: #f2f2f2;
+
+    }
+
+    input[type=text],
+    select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+
+    }
+    input[type=tel],
+    select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+
+    }
+    input[type=email],
+    select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+
+    }
+    input[type=date],
+    select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+
+    }
+    input[type=url],
+    select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+
+    }
+
+    #submit {
+      width: 100%;
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #submit:hover {
+      background-color: #45a049;
+    }
+
+
+
+    h4 {
+      padding-left: 20px;
+      padding-top: 10px;
+    }
+
+    label {
+      font-size: 14px;
+    }
+
+    #div {
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h3>List Shelf</h3>
+
+  <hr/>
+
+  <table class="table table-bordered table-striped" id="employeeTable">
+
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Warehouse Name</th>
+      <th>Name</th>
+        <th>Number Of Stage</th>
+      <th>Chức năng</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="listShelf: ${listShelf}">
+      <td th:text="${listShelf.id}" />
+        <td th:text="${listShelf.wareHouseName}" />
+      <td th:text="${listShelf.name}" />
+      <td th:text="${listShelf.numberOfStage}" />
+
+
+      <td>
+        <button class="button1" id="add" >update</button>
+
+        <div class="add1" style="display: none">
+          <div class="table1">
+
+            <h4 style="font-size:18px">Update Shelf <a href="" style="color:red ; margin-left:140px;font-size:25px">x</a></h4>
+            <hr>
+            <div id="div">
+              <form th:action="@{/updateshelf/{id}(id=${listShelf.id})}" th:object="${shelf}" method="post" class="form">
+                <label th:text="${ 'lable ' + listShelf.id}"></label>
+                <label>Name</label>
+                <input type="text" minlength="2" maxlength="50" th:field="*{name}">
+                <label>Number Of Stage</label>
+                <input type="text"  maxlength="50" th:field="*{numberOfStage}">
+                <label>Ware House Id</label>
+                <select class="select" th:field="*{wareHouseName}">
+                  <option
+                          th:each="listWareHouse : ${listWareHouse}"
+                          th:value="${listWareHouse.name}"
+                          th:text="${listWareHouse.name}"
+                  ></option>
+
+                <input type="submit" value="Update" id="submit">
+
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <form th:action="@{/deleteshelf/{id}(id=${listShelf.id})}" method="post"><button class="button1">Delete</button></form></td>
+
+    </tr>
+    </tbody>
+
+  </table>
+  <button class="button1" id="add2">Add</button>
+
+</div>
+
+
+<div class="add3">
+  <div class="table1">
+
+    <h4 style="font-size:18px">Add Shelf <a href="" style="color:red ; margin-left:140px;font-size:25px">x</a></h4>
+    <hr>
+    <div id="div">
+      <form th:action="@{/addshelf}" th:object="${shelf}" method="post" class="form">
+        <label>Name</label>
+        <input type="text" minlength="2" maxlength="50" th:field="*{name}">
+        <label>Number Of Stage</label>
+        <input type="text"  maxlength="50" th:field="*{numberOfStage}">
+        <label>Ware House Id</label>
+        <select class="select" th:field="*{wareHouseName}">
+          <option
+                  th:each="listWareHouse : ${listWareHouse}"
+                  th:value="${listWareHouse.name}"
+                  th:text="${listWareHouse.name}"
+          ></option>
+        </select>
+
+        <input type="submit" value="Update" id="submit">
+
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+        type="text/javascript"
+        src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"
+></script>
+<script>
+  $(document).ready(function () {
+    $("#employeeTable").DataTable({
+      aoColumnDefs: [
+        {
+          bSortable: false,
+          aTargets: [-1],
+        },
+      ],
+    });
+  });
+</script>
+
+<script>
+  const btnAdd = document.getElementById("add");
+  const divAdd = document.querySelector(".add1");
+  const btnAdd1 = document.getElementById("add2");
+  const divAdd1 = document.querySelector(".add3");
+
+  btnAdd1.addEventListener("click", () => {
+    if (divAdd1.style.display == "block") {
+      divAdd1.style.display = "none";
+    } else {
+      divAdd1.style.display = "block";
+    }
+  });
+  btnAdd.addEventListener("click", () => {
+    if (divAdd.style.display == "block") {
+      divAdd.style.display = "none";
+    } else {
+      divAdd.style.display = "block";
+    }
+  });
+
+
+</script>
+
+</html>

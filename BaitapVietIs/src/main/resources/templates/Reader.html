@@ -1,7 +1,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Admin</title>
+    <title>Warehouse</title>
 
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
@@ -31,6 +31,20 @@
         }
 
         .add1 {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 999999;
+            background-color: rgba(0, 0, 0, 0.75);
+            display: none;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .add3 {
             display: none;
             position: fixed;
             top: 0;
@@ -159,7 +173,7 @@
 
 <div class="container">
 
-    <h3>List Users</h3>
+    <h3>List Reader</h3>
 
     <hr/>
 
@@ -168,47 +182,87 @@
         <thead>
         <tr>
             <th>Id</th>
-            <th>Name</th>
-<!--            <th>User Name</th>-->
-            <th>Position</th>
-            <th>Date of birth</th>
-            <th>Thêm</th>
+            <th>Warehouse Name</th>
+            <th>Address</th>
+            <th>IP Address</th>
+            <th>Chức năng</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="listUser: ${listUser}">
-            <td th:text="${listUser.id}" />
-            <td th:text="${listUser.name}" />
-<!--            <td th:text="${listUser.userName}" />-->
-            <td th:text="${listUser.position}" />
-            <td th:text="${listUser.DateOfBirth}" />
-            <td><form th:action="@{/updateUser}" method="post" ><button class="button1" id="add">update</button></form>
+        <tr th:each="listReader: ${listReader}">
+            <td th:text="${listReader.id}" />
+            <td th:text="${listReader.wareHouseName}" />
+            <td th:text="${listReader.adress}" />
+            <td th:text="${listReader.ipaddess}" />
 
-            <button class="button1">Delete</button></td>
+
+            <td>
+                <button class="button1" id="add" >update</button>
+
+                <div class="add1" style="display: none">
+                    <div class="table1">
+
+                        <h4 style="font-size:18px">Update Shelf <a href="" style="color:red ; margin-left:140px;font-size:25px">x</a></h4>
+                        <hr>
+                        <div id="div">
+<!--                            <form th:action="@{/updateshelf/{id}(id=${listShelf.id})}" th:object="${shelf}" method="post" class="form">-->
+<!--                                <label th:text="${ 'lable ' + listShelf.id}"></label>-->
+<!--                                <label>Name</label>-->
+<!--                                <input type="text" minlength="2" maxlength="50" th:field="*{name}">-->
+<!--                                <label>Number Of Stage</label>-->
+<!--                                <input type="text"  maxlength="50" th:field="*{numberOfStage}">-->
+<!--                                <label>Ware House Id</label>-->
+<!--                                <select class="select" th:field="*{wareHouseName}">-->
+<!--                                    <option-->
+<!--                                            th:each="listWareHouse : ${listWareHouse}"-->
+<!--                                            th:value="${listWareHouse.name}"-->
+<!--                                            th:text="${listWareHouse.name}"-->
+<!--                                    ></option>-->
+
+<!--                                    <input type="submit" value="Update" id="submit">-->
+
+<!--                            </form>-->
+                        </div>
+                    </div>
+                </div>
+
+                <form th:action="@{/deleteshelf/{id}(id=${listShelf.id})}" method="post"><button class="button1">Delete</button></form></td>
 
         </tr>
         </tbody>
 
     </table>
+    <button class="button1" id="add2">Add</button>
 
 </div>
 
-<!--<div class="add1">-->
-<!--    <div class="table1">-->
 
-<!--        <h4 style="font-size:18px">Update User <a href="" style="color:red ; margin-left:140px;font-size:25px">x</a></h4>-->
-<!--        <hr>-->
-<!--        <div id="div">-->
-<!--            <form th:action="@{/updateUser}" th:object="${user}" method="post" class="form">-->
-<!--                <label>Name</label>-->
-<!--                <input type="text" minlength="2" maxlength="50" th:field="*{usser.name}">-->
+<div class="add3">
+    <div class="table1">
 
-<!--                <input type="submit" value="Update" id="submit">-->
+        <h4 style="font-size:18px">Add Shelf <a href="" style="color:red ; margin-left:140px;font-size:25px">x</a></h4>
+        <hr>
+        <div id="div">
+            <form th:action="@{/addreader}" th:object="${reader}" method="post" class="form">
+                <label>Ipadress</label>
+                <input type="text"  maxlength="50" th:field="*{ipaddess}">
+                <label>Adress</label>
+                <input type="text"  maxlength="50" th:field="*{adress}">
+                <label>Ware House</label>
+                <select class="select" th:field="*{wareHouseName}">
+                    <option
+                            th:each="listWareHouse : ${listWareHouse}"
+                            th:value="${listWareHouse.name}"
+                            th:text="${listWareHouse.name}"
+                    ></option>
+                </select>
 
-<!--            </form>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+                <input type="submit" value="Update" id="submit">
+
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
@@ -231,7 +285,16 @@
 <script>
     const btnAdd = document.getElementById("add");
     const divAdd = document.querySelector(".add1");
+    const btnAdd1 = document.getElementById("add2");
+    const divAdd1 = document.querySelector(".add3");
 
+    btnAdd1.addEventListener("click", () => {
+        if (divAdd1.style.display == "block") {
+            divAdd1.style.display = "none";
+        } else {
+            divAdd1.style.display = "block";
+        }
+    });
     btnAdd.addEventListener("click", () => {
         if (divAdd.style.display == "block") {
             divAdd.style.display = "none";
@@ -239,6 +302,8 @@
             divAdd.style.display = "block";
         }
     });
+
+
 </script>
 
 </html>
